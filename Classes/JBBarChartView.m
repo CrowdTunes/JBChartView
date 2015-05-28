@@ -58,6 +58,9 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
 
 @implementation JBBarChartView
 
+@dynamic dataSource;
+@dynamic delegate;
+
 #pragma mark - Alloc/Init
 
 + (void)initialize
@@ -487,6 +490,15 @@ static UIColor *kJBBarChartViewDefaultBarColor = nil;
         return fmaxf(self.cachedMaxHeight, [super maximumValue]);
     }
     return self.cachedMaxHeight;    
+}
+
+- (UIView *)barViewAtIndex:(NSUInteger)index
+{
+	if (index < [self.barViews count])
+	{
+		return [self.barViews objectAtIndex:index];
+	}
+	return nil;
 }
 
 - (NSUInteger)dataCount
